@@ -1,0 +1,11 @@
+<!doctype html><meta charset="utf-8"><title>OpenCV smoke</title>
+<script>
+window.__PARITY_PROGRESS__='loading-opencv-wrapper';
+window.Module={
+  onRuntimeInitialized(){window.__PARITY_RESULT__={ready:true,hasMat:Boolean(window.cv&&window.cv.Mat),ms:performance.now()-window.started};},
+  printErr(message){console.error('opencv:',message);}
+};
+window.started=performance.now();
+</script>
+<script src="../vendor/opencv/opencv.js"></script>
+<script>window.__PARITY_PROGRESS__='waiting-runtime';</script>

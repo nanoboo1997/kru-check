@@ -1,0 +1,51 @@
+# macOS / editors
+.DS_Store
+**/.DS_Store
+.idea/
+.vscode/
+*~
+
+# JavaScript tooling
+node_modules/
+coverage/
+.cache/
+dist/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python helper artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+teacher-auth.json
+.dev.vars
+.wrangler/
+.cloudflared/
+
+# Private/local Kru Check data and exports
+data/
+uploads/
+private/
+backups/
+exports/
+*.db
+*.sqlite
+*.sqlite3
+
+# Temporary test output
+tmp/
+temp/
+tests/output/
+*.tmp
+*.swp

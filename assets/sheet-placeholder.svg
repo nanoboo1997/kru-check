@@ -1,0 +1,191 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800">
+<rect width="600" height="800" fill="#ffffff"/>
+<rect x="20" y="20" width="560" height="760" fill="none" stroke="#d7e6f2" stroke-width="3" rx="12"/>
+<text x="300" y="70" text-anchor="middle" font-family="sans-serif" font-size="26" fill="#6b87a0" font-weight="bold">กระดาษคำตอบ (ภาพตัวอย่าง)</text>
+<text x="300" y="100" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#93a9bd">placeholder สำหรับทดลอง UI — ไม่ใช่ภาพสแกนจริง</text>
+<rect x="40" y="130" width="46" height="46" fill="#16324a" rx="6"/>
+<rect x="514" y="130" width="46" height="46" fill="#16324a" rx="6"/>
+<rect x="40" y="714" width="46" height="46" fill="#16324a" rx="6"/>
+<rect x="514" y="714" width="46" height="46" fill="#16324a" rx="6"/>
+<g font-family="sans-serif" font-size="16" fill="#6b87a0">
+<text x="70" y="200">1.</text>
+<circle cx="150" cy="194" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="150" y="199" text-anchor="middle">ก</text>
+<circle cx="260" cy="194" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="260" y="199" text-anchor="middle">ข</text>
+<circle cx="370" cy="194" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="370" y="199" text-anchor="middle">ค</text>
+<circle cx="480" cy="194" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="480" y="199" text-anchor="middle">ง</text>
+<text x="70" y="228">2.</text>
+<circle cx="150" cy="222" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="150" y="227" text-anchor="middle">ก</text>
+<circle cx="260" cy="222" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="260" y="227" text-anchor="middle">ข</text>
+<circle cx="370" cy="222" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="370" y="227" text-anchor="middle">ค</text>
+<circle cx="480" cy="222" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="480" y="227" text-anchor="middle">ง</text>
+<text x="70" y="256">3.</text>
+<circle cx="150" cy="250" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="150" y="255" text-anchor="middle">ก</text>
+<circle cx="260" cy="250" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="260" y="255" text-anchor="middle">ข</text>
+<circle cx="370" cy="250" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="370" y="255" text-anchor="middle">ค</text>
+<circle cx="480" cy="250" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="480" y="255" text-anchor="middle">ง</text>
+<text x="70" y="284">4.</text>
+<circle cx="150" cy="278" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="150" y="283" text-anchor="middle">ก</text>
+<circle cx="260" cy="278" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="260" y="283" text-anchor="middle">ข</text>
+<circle cx="370" cy="278" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="370" y="283" text-anchor="middle">ค</text>
+<circle cx="480" cy="278" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="480" y="283" text-anchor="middle">ง</text>
+<text x="70" y="312">5.</text>
+<circle cx="150" cy="306" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="150" y="311" text-anchor="middle">ก</text>
+<circle cx="260" cy="306" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="260" y="311" text-anchor="middle">ข</text>
+<circle cx="370" cy="306" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="370" y="311" text-anchor="middle">ค</text>
+<circle cx="480" cy="306" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="480" y="311" text-anchor="middle">ง</text>
+<text x="70" y="340">6.</text>
+<circle cx="150" cy="334" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="150" y="339" text-anchor="middle">ก</text>
+<circle cx="260" cy="334" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="260" y="339" text-anchor="middle">ข</text>
+<circle cx="370" cy="334" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="370" y="339" text-anchor="middle">ค</text>
+<circle cx="480" cy="334" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="480" y="339" text-anchor="middle">ง</text>
+<text x="70" y="368">7.</text>
+<circle cx="150" cy="362" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="150" y="367" text-anchor="middle">ก</text>
+<circle cx="260" cy="362" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="260" y="367" text-anchor="middle">ข</text>
+<circle cx="370" cy="362" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="370" y="367" text-anchor="middle">ค</text>
+<circle cx="480" cy="362" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="480" y="367" text-anchor="middle">ง</text>
+<text x="70" y="396">8.</text>
+<circle cx="150" cy="390" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="150" y="395" text-anchor="middle">ก</text>
+<circle cx="260" cy="390" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="260" y="395" text-anchor="middle">ข</text>
+<circle cx="370" cy="390" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="370" y="395" text-anchor="middle">ค</text>
+<circle cx="480" cy="390" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="480" y="395" text-anchor="middle">ง</text>
+<text x="70" y="424">9.</text>
+<circle cx="150" cy="418" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="150" y="423" text-anchor="middle">ก</text>
+<circle cx="260" cy="418" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="260" y="423" text-anchor="middle">ข</text>
+<circle cx="370" cy="418" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="370" y="423" text-anchor="middle">ค</text>
+<circle cx="480" cy="418" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="480" y="423" text-anchor="middle">ง</text>
+<text x="70" y="452">10.</text>
+<circle cx="150" cy="446" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="150" y="451" text-anchor="middle">ก</text>
+<circle cx="260" cy="446" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="260" y="451" text-anchor="middle">ข</text>
+<circle cx="370" cy="446" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="370" y="451" text-anchor="middle">ค</text>
+<circle cx="480" cy="446" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="480" y="451" text-anchor="middle">ง</text>
+<text x="70" y="480">11.</text>
+<circle cx="150" cy="474" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="150" y="479" text-anchor="middle">ก</text>
+<circle cx="260" cy="474" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="260" y="479" text-anchor="middle">ข</text>
+<circle cx="370" cy="474" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="370" y="479" text-anchor="middle">ค</text>
+<circle cx="480" cy="474" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="480" y="479" text-anchor="middle">ง</text>
+<text x="70" y="508">12.</text>
+<circle cx="150" cy="502" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="150" y="507" text-anchor="middle">ก</text>
+<circle cx="260" cy="502" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="260" y="507" text-anchor="middle">ข</text>
+<circle cx="370" cy="502" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="370" y="507" text-anchor="middle">ค</text>
+<circle cx="480" cy="502" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="480" y="507" text-anchor="middle">ง</text>
+<text x="70" y="536">13.</text>
+<circle cx="150" cy="530" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="150" y="535" text-anchor="middle">ก</text>
+<circle cx="260" cy="530" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="260" y="535" text-anchor="middle">ข</text>
+<circle cx="370" cy="530" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="370" y="535" text-anchor="middle">ค</text>
+<circle cx="480" cy="530" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="480" y="535" text-anchor="middle">ง</text>
+<text x="70" y="564">14.</text>
+<circle cx="150" cy="558" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="150" y="563" text-anchor="middle">ก</text>
+<circle cx="260" cy="558" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="260" y="563" text-anchor="middle">ข</text>
+<circle cx="370" cy="558" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="370" y="563" text-anchor="middle">ค</text>
+<circle cx="480" cy="558" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="480" y="563" text-anchor="middle">ง</text>
+<text x="70" y="592">15.</text>
+<circle cx="150" cy="586" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="150" y="591" text-anchor="middle">ก</text>
+<circle cx="260" cy="586" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="260" y="591" text-anchor="middle">ข</text>
+<circle cx="370" cy="586" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="370" y="591" text-anchor="middle">ค</text>
+<circle cx="480" cy="586" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="480" y="591" text-anchor="middle">ง</text>
+<text x="70" y="620">16.</text>
+<circle cx="150" cy="614" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="150" y="619" text-anchor="middle">ก</text>
+<circle cx="260" cy="614" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="260" y="619" text-anchor="middle">ข</text>
+<circle cx="370" cy="614" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="370" y="619" text-anchor="middle">ค</text>
+<circle cx="480" cy="614" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="480" y="619" text-anchor="middle">ง</text>
+<text x="70" y="648">17.</text>
+<circle cx="150" cy="642" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="150" y="647" text-anchor="middle">ก</text>
+<circle cx="260" cy="642" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="260" y="647" text-anchor="middle">ข</text>
+<circle cx="370" cy="642" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="370" y="647" text-anchor="middle">ค</text>
+<circle cx="480" cy="642" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="480" y="647" text-anchor="middle">ง</text>
+<text x="70" y="676">18.</text>
+<circle cx="150" cy="670" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="150" y="675" text-anchor="middle">ก</text>
+<circle cx="260" cy="670" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="260" y="675" text-anchor="middle">ข</text>
+<circle cx="370" cy="670" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="370" y="675" text-anchor="middle">ค</text>
+<circle cx="480" cy="670" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="480" y="675" text-anchor="middle">ง</text>
+<text x="70" y="704">19.</text>
+<circle cx="150" cy="698" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="150" y="703" text-anchor="middle">ก</text>
+<circle cx="260" cy="698" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="260" y="703" text-anchor="middle">ข</text>
+<circle cx="370" cy="698" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="370" y="703" text-anchor="middle">ค</text>
+<circle cx="480" cy="698" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="480" y="703" text-anchor="middle">ง</text>
+<text x="70" y="732">20.</text>
+<circle cx="150" cy="726" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="150" y="731" text-anchor="middle">ก</text>
+<circle cx="260" cy="726" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="260" y="731" text-anchor="middle">ข</text>
+<circle cx="370" cy="726" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="370" y="731" text-anchor="middle">ค</text>
+<circle cx="480" cy="726" r="11" fill="none" stroke="#b9cfdf" stroke-width="2.5"/>
+<text x="480" y="731" text-anchor="middle">ง</text>
+</g></svg>

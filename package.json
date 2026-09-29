@@ -1,0 +1,13 @@
+{
+  "description": "Kru Check PWA — frontend + offline browser OMR architecture",
+  "name": "kru-check-pwa",
+  "private": true,
+  "type": "module",
+  "version": "0.2.0",
+  "scripts": {
+    "test": "node --test tests/unit.test.mjs",
+    "test:runtime": "KRU_BROWSER_PAGE=tests/opencv-loader-smoke.html node tools/run_browser_parity.mjs",
+    "reference": "../kru-check/.venv/bin/python tools/generate_python_reference.py --stable ../kru-check --fixtures tests/fixtures --output tests/python-reference.json",
+    "test:parity": "npm run reference && node tools/run_browser_parity.mjs"
+  }
+}

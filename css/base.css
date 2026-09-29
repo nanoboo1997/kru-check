@@ -1,0 +1,87 @@
+/* ============================================================
+ * Kru Check — base: reset, typography, page layout (mobile-first)
+ * ============================================================ */
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font);
+  font-size: var(--fs-md);
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+#app { min-height: 100dvh; display: flex; flex-direction: column; }
+
+h1, h2, h3, h4 { margin: 0 0 8px; line-height: 1.35; font-weight: 700; }
+h1 { font-size: var(--fs-2xl); }
+h2 { font-size: var(--fs-xl); }
+h3 { font-size: var(--fs-lg); }
+p { margin: 0 0 10px; }
+
+a { color: var(--primary-deep); text-decoration: none; }
+button { font-family: var(--font); }
+
+/* หน้าเพจ: คอลัมน์กลาง กว้างสูงสุดเหมาะกับมือถือ */
+.page {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: var(--page-pad);
+  padding-bottom: calc(96px + var(--sab)); /* เว้นที่ให้ bottom nav */
+}
+.page--bare { padding-bottom: calc(24px + var(--sab)); }
+
+.page-title { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.page-sub { color: var(--muted); font-size: var(--fs-sm); margin-bottom: 16px; }
+
+.section { margin: 20px 0 6px; font-size: var(--fs-sm); font-weight: 700; color: var(--muted); letter-spacing: 0.02em; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
+
+.stack > * + * { margin-top: var(--gap); }
+
+.muted { color: var(--muted); }
+.small { font-size: var(--fs-sm); }
+.center { text-align: center; }
+
+.back-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  min-height: var(--tap); color: var(--primary-deep); font-weight: 600;
+}
+
+/* เส้นคั่น */
+.hr { border: 0; border-top: 1px solid var(--line); margin: 16px 0; }
+
+/* ป้าย dev-mode: ใช้ทั่วแอปเพื่อบอกว่าส่วนนี้ยังเป็นโครงรอเชื่อมจริง */
+.dev-note {
+  background: var(--warning-soft);
+  border: 1px dashed var(--warning);
+  color: #8a5f0b;
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: var(--fs-sm);
+  margin: 12px 0;
+}
+.dev-note strong { display: block; margin-bottom: 2px; }
+
+.empty {
+  text-align: center; color: var(--muted); padding: 32px 16px;
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+}
+
+/* ตารางข้อมูล (รายชื่อนักเรียน ฯลฯ) */
+.table-wrap { overflow-x: auto; background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); }
+table.data { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
+table.data th, table.data td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; }
+table.data th { color: var(--muted); font-weight: 700; background: var(--bg-soft); }
+table.data tr:last-child td { border-bottom: 0; }

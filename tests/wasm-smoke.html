@@ -1,0 +1,8 @@
+<!doctype html><meta charset="utf-8"><title>WASM smoke</title>
+<script>
+window.__PARITY_PROGRESS__='compiling-wasm';
+const started=performance.now();
+WebAssembly.compileStreaming(fetch('../vendor/opencv/opencv.wasm'))
+  .then(module=>{window.__PARITY_RESULT__={compiled:true,ms:performance.now()-started,exports:WebAssembly.Module.exports(module).length};})
+  .catch(error=>{window.__PARITY_RESULT__={fatal:error.message,stack:error.stack};});
+</script>

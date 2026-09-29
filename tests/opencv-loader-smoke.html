@@ -1,0 +1,18 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>OpenCV loader smoke</title>
+<script type="module">
+  import { loadOpenCv } from '../js/omr/core/opencvRuntime.js';
+
+  window.__PARITY_PROGRESS__ = 'loading-through-app-loader';
+  const started = performance.now();
+  loadOpenCv().then((cv) => {
+    window.__PARITY_RESULT__ = {
+      ready: true,
+      hasMat: typeof cv.Mat === 'function',
+      ms: performance.now() - started,
+    };
+  }).catch((error) => {
+    window.__PARITY_RESULT__ = { fatal: error.message, stack: error.stack };
+  });
+</script>
