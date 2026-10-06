@@ -53,6 +53,10 @@ export function bindStickySheet(root, { imageUrl, marks = [] } = {}) {
     toggleBtn.textContent = hidden ? 'แสดงภาพ' : 'ซ่อนภาพ';
   });
   return {
+    setImage(url) {
+      const image = root.querySelector('img.sheet');
+      if (image) image.src = url || 'assets/sheet-placeholder.svg';
+    },
     setQuestion(no, nextMarks = marks) {
       const cap = root.querySelector('[data-sheet-caption]');
       if (cap) cap.textContent = `กำลังตรวจข้อ ${no}`;

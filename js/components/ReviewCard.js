@@ -14,7 +14,7 @@ export function reviewCardHTML(item, picked = null) {
   return `
   <div class="card" data-review-card="${item.id}">
     <div class="review-question">ข้อ ${item.questionNo}</div>
-    <p class="center small muted">ภาพช่องคำตอบที่ OMR ไม่มั่นใจ</p>
+    <p class="center small muted">OMR ไม่มั่นใจ: ${item.reason || 'เครื่องหมายไม่ชัดเจน'}</p>
     <div class="center" style="margin:8px 0;">
       <img src="${item.imageUrl}" alt="ภาพช่องคำตอบข้อ ${item.questionNo}"
            style="width:120px;border-radius:12px;border:2px solid var(--line);" />

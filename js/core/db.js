@@ -9,7 +9,7 @@
  *   Results / Review Queue / Sync Queue
  * ============================================================ */
 
-const DB_NAME = 'kru-check-db';
+export const DB_NAME = 'kru-check-db';
 const DB_VERSION = 1;
 
 /** store name -> [options, indexes] */
@@ -77,74 +77,43 @@ export class IDBStore {
     return new Promise((resolve, reject) => {
       const tx = db.transaction(this.storeName, mode);
       const store = tx.objectStore(this.storeName);
+      let request;
       let result;
       try {
-        result = fn(store);
+        request = fn(store);
       } catch (err) {
         reject(err);
         return;
       }
-      tx.oncomplete = () => resolve(result?.value);
+      if (request) {
+        request.onsuccess = () => { result = request.result ?? null; };
+        request.onerror = () => reject(request.error);
+      }
+      tx.oncomplete = () => resolve(result);
       tx.onerror = () => reject(tx.error);
       tx.onabort = () => reject(tx.error);
     });
   }
-  _req(store, method, ...args) {
-    return new Promise((resolve, reject) => {
-      const rq = store[method](...args);
-      rq.onsuccess = () => resolve(rq.result);
-      rq.onerror = () => reject(rq.error);
-    });
-  }
   list() {
-    return this._tx('readonly', (s) => {
-      const out = { value: null };
-      this._req(s, 'getAll').then((v) => (out.value = v));
-      return out;
-    });
+    return this._tx('readonly', (s) => s.getAll());
   }
   get(id) {
-    return this._tx('readonly', (s) => {
-      const out = { value: null };
-      this._req(s, 'get', id).then((v) => (out.value = v ?? null));
-      return out;
-    });
+    return this._tx('readonly', (s) => s.get(id));
   }
   put(item) {
-    return this._tx('readwrite', (s) => {
-      const out = { value: null };
-      this._req(s, 'put', item).then((v) => (out.value = v));
-      return out;
-    });
+    return this._tx('readwrite', (s) => s.put(item));
   }
   add(item) {
-    return this._tx('readwrite', (s) => {
-      const out = { value: null };
-      this._req(s, 'add', item).then((v) => (out.value = v));
-      return out;
-    });
+    return this._tx('readwrite', (s) => s.add(item));
   }
   remove(id) {
-    return this._tx('readwrite', (s) => {
-      const out = { value: null };
-      this._req(s, 'delete', id).then(() => (out.value = true));
-      return out;
-    });
+    return this._tx('readwrite', (s) => s.delete(id)).then(() => true);
   }
   clear() {
-    return this._tx('readwrite', (s) => {
-      const out = { value: null };
-      this._req(s, 'clear').then(() => (out.value = true));
-      return out;
-    });
+    return this._tx('readwrite', (s) => s.clear()).then(() => true);
   }
   byIndex(indexName, value) {
-    return this._tx('readonly', (s) => {
-      const out = { value: null };
-      const idx = s.index(indexName);
-      this._req(idx, 'getAll', value).then((v) => (out.value = v));
-      return out;
-    });
+    return this._tx('readonly', (s) => s.index(indexName).getAll(value));
   }
 }
 

@@ -25,7 +25,10 @@ export async function renderShell(active, mainHTML, { bare = false } = {}) {
       <header class="app-header">
         <div class="app-header__inner">
           <div class="brand"><span class="brand__logo">✓</span><span>${config.appName}</span></div>
-          ${syncPillHTML(state)}
+          <div class="header-statuses">
+            ${store.offlineReady ? '<span class="offline-ready" data-offline-ready>✓ พร้อมใช้งานออฟไลน์</span>' : ''}
+            ${syncPillHTML(state)}
+          </div>
         </div>
         ${offlineBannerHTML(isOffline)}
       </header>
@@ -38,6 +41,13 @@ export async function renderShell(active, mainHTML, { bare = false } = {}) {
 /** ผูก event ระดับ shell: connectivity เปลี่ยน → รีเฟรช pill + banner */
 export function bindShell() {
   store.on(async (topic) => {
+    if (topic === 'offline-ready') {
+      const statuses = document.querySelector('.header-statuses');
+      if (!statuses) return;
+      statuses.querySelector('[data-offline-ready]')?.remove();
+      if (store.offlineReady) statuses.insertAdjacentHTML('afterbegin', '<span class="offline-ready" data-offline-ready>✓ พร้อมใช้งานออฟไลน์</span>');
+      return;
+    }
     if (topic !== 'connectivity') return;
     const { refreshSyncPills } = await import('./SyncStatus.js');
     const state = await refreshSyncPills(document);

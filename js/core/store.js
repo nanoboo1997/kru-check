@@ -10,9 +10,10 @@ import { config } from '../config.js';
 import { createRepositories } from '../repositories/factory.js';
 import { MockAuthService } from '../services/authService.js';
 import { BrowserOmrService } from '../services/omrService.js';
-import { MockSyncService, GasSyncAdapter } from './sync.js';
+import { OfflineOnlySyncService, GasSyncAdapter } from './sync.js';
 import { BackupService } from '../services/backupService.js';
 import { DevAnswerSheetService } from '../services/answerSheetService.js';
+import { ensureOfflineTestSeed } from '../repositories/offlineSeed.js';
 
 const SESSION_KEY = 'kc-session';
 
@@ -32,10 +33,13 @@ class AppStore {
     this.repos = createRepositories(config.dataMode);
     this.auth = new MockAuthService(this.repos);
     this.omr = new BrowserOmrService();
-    // Sync: ใช้ mock จนกว่า config.gas.endpoint จะถูกตั้งค่าโดย Codex
-    this.sync = config.gas.endpoint ? new GasSyncAdapter(this.repos) : new MockSyncService(this.repos);
+    // Phase 2 keeps operations pending locally until a real GAS endpoint exists.
+    this.sync = config.gas.endpoint ? new GasSyncAdapter(this.repos) : new OfflineOnlySyncService(this.repos);
     this.backup = new BackupService(this.repos);
     this.answerSheet = new DevAnswerSheetService();
+    this.offlineReady = false;
+
+    if (config.dataMode === 'indexeddb') await ensureOfflineTestSeed(this.repos);
 
     // คืน session เดิม (ถ้ามี) — เก็บแค่ id ครู ไม่เก็บรหัสผ่าน
     try {
@@ -65,6 +69,11 @@ class AppStore {
     this.currentUser = null;
     try { sessionStorage.removeItem(SESSION_KEY); } catch { /* ignore */ }
     this.emit('auth');
+  }
+
+  setOfflineReady(ready) {
+    this.offlineReady = Boolean(ready);
+    this.emit('offline-ready');
   }
 
   on(fn) { this.listeners.add(fn); return () => this.listeners.delete(fn); }

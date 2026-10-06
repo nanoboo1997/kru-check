@@ -29,22 +29,51 @@ const routes = [
 ];
 
 async function registerSW() {
-  if (!('serviceWorker' in navigator)) return;
+  if (!('serviceWorker' in navigator)) { store.setOfflineReady(false); return; }
   try {
-    await navigator.serviceWorker.register('./sw.js', { scope: './' });
+    const registration = await navigator.serviceWorker.register('./sw.js', { scope: './' });
+    const checkReady = async () => {
+      const current = await navigator.serviceWorker.ready;
+      const worker = current.active;
+      if (!worker) return;
+      const ready = await new Promise((resolve) => {
+        const channel = new MessageChannel();
+        const timer = setTimeout(() => resolve(false), 5000);
+        channel.port1.onmessage = (event) => {
+          clearTimeout(timer);
+          resolve(event.data?.type === 'OFFLINE_READY_STATUS' && event.data.ready === true);
+        };
+        worker.postMessage({ type: 'CHECK_OFFLINE_READY' }, [channel.port2]);
+      });
+      // An older Phase 1 worker may time out while the new worker activates.
+      // Never let that stale response overwrite a confirmed ready state.
+      if (ready || !store.offlineReady) store.setOfflineReady(ready);
+    };
+    navigator.serviceWorker.addEventListener('controllerchange', () => { void checkReady(); }, { once: true });
+    const installing = registration.installing;
+    if (installing) installing.addEventListener('statechange', () => {
+      if (installing.state === 'activated') void checkReady();
+    });
+    await checkReady();
   } catch (err) {
+    store.setOfflineReady(false);
     console.warn('Service Worker ลงทะเบียนไม่สำเร็จ:', err);
   }
 }
 
 async function boot() {
   await store.init();
-  await registerSW();
+  // Cache installation can include the large OpenCV WASM. Do it in the
+  // background so first paint is not held hostage; the shell updates only
+  // after the worker proves every required asset is cached.
+  void registerSW();
 
   const router = new Router(routes);
   const app = document.getElementById('app');
+  let cleanupPage = null;
 
   router.onRoute = async ({ route, params, query, segments }) => {
+    if (cleanupPage) { cleanupPage(); cleanupPage = null; }
     const path = segments.join('/');
     if (!route) { router.navigate('dashboard'); return; }
     // auth guard
@@ -61,7 +90,10 @@ async function boot() {
     const mainHTML = await mod.render(ctx);
     app.innerHTML = await renderShell(route.tab, mainHTML, { bare: !!route.bare });
     const view = document.getElementById('view') || app;
-    if (typeof mod.bind === 'function') await mod.bind(view, ctx);
+    if (typeof mod.bind === 'function') {
+      const cleanup = await mod.bind(view, ctx);
+      if (typeof cleanup === 'function') cleanupPage = cleanup;
+    }
     window.scrollTo(0, 0);
   };
 

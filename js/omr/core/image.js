@@ -39,6 +39,20 @@ function makeCanvas(width, height) {
   return canvas;
 }
 
+/** Convert a normalized OpenCV Mat to a compact local JPEG for review UI. */
+export async function matToReviewBlob(cv, mat, { quality = 0.82 } = {}) {
+  const canvas = makeCanvas(mat.cols, mat.rows);
+  cv.imshow(canvas, mat);
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((blob) => {
+      canvas.width = 1;
+      canvas.height = 1;
+      if (blob) resolve(blob);
+      else reject(new Error('ไม่สามารถเตรียมภาพสำหรับตรวจทานได้'));
+    }, 'image/jpeg', quality);
+  });
+}
+
 /** Decode Blob/image/canvas locally and return an RGBA cv.Mat, capped like Python. */
 export async function imageSourceToMat(cv, source) {
   if (!source) throw new Error('กรุณาเลือกรูปกระดาษคำตอบ');
@@ -60,8 +74,12 @@ export async function imageSourceToMat(cv, source) {
   let rgba = null;
   try {
     rgba = cv.imread(canvas);
+    canvas.width = 1;
+    canvas.height = 1;
     return rgba;
   } catch (error) {
+    canvas.width = 1;
+    canvas.height = 1;
     deleteMats(rgba);
     throw new Error(`อ่านภาพไม่ได้: ${error?.message || error}`);
   }

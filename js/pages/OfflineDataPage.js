@@ -64,7 +64,10 @@ export async function bind(root, { repos, store, navigate }) {
     say(`<div class="dev-note"><strong>กำลังซิงก์…</strong></div>`);
     const res = await store.sync.syncNow();
     if (!res.ok) {
-      say(`<div class="dev-note"><strong>ออฟไลน์อยู่</strong>กำลังใช้งานแบบออฟไลน์ — ผลตรวจจะถูกซิงก์เมื่อกลับมาออนไลน์</div>`);
+      const text = res.reason === 'not-configured'
+        ? 'ยังไม่ได้เชื่อมระบบ Cloud — ข้อมูลยังเก็บอยู่ในเครื่องครบ'
+        : 'กำลังใช้งานแบบออฟไลน์ — ผลตรวจจะถูกซิงก์เมื่อกลับมาออนไลน์';
+      say(`<div class="dev-note"><strong>ยังไม่ได้ซิงก์</strong>${text}</div>`);
     } else {
       say(`<div class="dev-note" style="border-color:var(--success);background:var(--success-soft);color:var(--success);"><strong>ซิงก์แล้ว</strong>ดันข้อมูล ${res.pushed} รายการ</div>`);
       setTimeout(() => navigate('offline'), 900);

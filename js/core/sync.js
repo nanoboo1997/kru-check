@@ -61,6 +61,20 @@ export class MockSyncService extends SyncService {
   }
 }
 
+/** Phase 2: retain every operation locally until a real backend exists. */
+export class OfflineOnlySyncService extends SyncService {
+  async push() { return { pushed: 0, configured: false }; }
+  async pull() { return { pulled: 0, configured: false }; }
+  async syncNow() { return { ok: false, reason: navigator.onLine ? 'not-configured' : 'offline' }; }
+  async getStatus() {
+    if (!navigator.onLine) return 'offline';
+    return (await this.repos.sync.pending()).length ? 'pending' : 'synced';
+  }
+  async getLastSync() { return this.repos.sync.getMeta('lastSync'); }
+  async getConflicts() { return []; }
+  async retryFailed() { return { retried: 0 }; }
+}
+
 /**
  * Adapter สำหรับ Google Apps Script (อนาคต)
  * TODO(Codex): implement โดยยิง HTTP ไปยัง config.gas.endpoint

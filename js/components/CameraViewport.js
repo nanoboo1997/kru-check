@@ -52,3 +52,20 @@ export function closeCamera(root) {
   if (idle) idle.style.display = 'flex';
   root._stream = null;
 }
+
+/** Capture one still frame locally. Nothing is uploaded. */
+export async function captureCameraPhoto(root) {
+  const video = root.querySelector('[data-cam-video]');
+  if (!video || !video.videoWidth || !video.videoHeight) throw new Error('กล้องยังไม่พร้อม กรุณารอสักครู่');
+  const maxSide = 2400;
+  const scale = Math.min(1, maxSide / Math.max(video.videoWidth, video.videoHeight));
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.round(video.videoWidth * scale);
+  canvas.height = Math.round(video.videoHeight * scale);
+  canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+  const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/jpeg', 0.9));
+  canvas.width = 1;
+  canvas.height = 1;
+  if (!blob) throw new Error('ไม่สามารถบันทึกภาพจากกล้องได้');
+  return blob;
+}

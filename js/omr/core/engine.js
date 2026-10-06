@@ -1,6 +1,6 @@
 import { LETTERS, SHEET_HEIGHT, SHEET_WIDTH } from '../constants.js';
 import { loadOpenCv, OPENCV_RUNTIME } from './opencvRuntime.js';
-import { imageSourceToMat } from './image.js';
+import { imageSourceToMat, matToReviewBlob } from './image.js';
 import { deleteMats } from './memory.js';
 import { loadAcceptedMarks } from '../templates/acceptedMarks.js';
 import { rectify, rectifyLegacy } from '../alignment/rectify.js';
@@ -8,6 +8,15 @@ import { gradeAnswers, readAnswerDetails } from '../recognition/readAnswers.js';
 
 let initializedAt = null;
 let initializationMs = null;
+
+async function reportStage(callback, stage) {
+  if (typeof callback === 'function') callback(stage);
+  // Give Safari a paint opportunity between the large synchronous OpenCV steps.
+  await new Promise((resolve) => {
+    if (typeof requestAnimationFrame === 'function') requestAnimationFrame(() => resolve());
+    else setTimeout(resolve, 0);
+  });
+}
 
 function answerBox(boxes, question) {
   const group = boxes[question];
@@ -41,17 +50,24 @@ export async function initializeBrowserOmr() {
 /** Process one already-acquired image entirely in this browser. */
 export async function processAnswerSheetLocal(image, options = {}) {
   const started = performance.now();
+  await reportStage(options.onStage, 'preparing');
   const { cv, templates } = await initializeBrowserOmr();
   const count = Number(options.count || 40);
   const legacy = options.legacy !== false && count === 40;
+  const decodeStarted = performance.now();
   const source = await imageSourceToMat(cv, image);
+  const decodeMs = performance.now() - decodeStarted;
   let alignment = null;
   try {
+    await reportStage(options.onStage, 'finding');
+    const omrStarted = performance.now();
     alignment = legacy ? rectifyLegacy(cv, source, options.points || null) : rectify(cv, source, options.points || null);
+    await reportStage(options.onStage, 'reading');
     const result = readAnswerDetails(cv, alignment.normalized, count, templates, {
       profile: options.profile || null,
       allowLegacyTable: legacy,
     });
+    await reportStage(options.onStage, 'scoring');
     const key = Array.isArray(options.answerKey)
       ? options.answerKey.map((value) => typeof value === 'string' ? LETTERS.indexOf(value) : Number(value))
       : null;
@@ -62,7 +78,11 @@ export async function processAnswerSheetLocal(image, options = {}) {
       candidates: result.answers[question].map((choice) => LETTERS[choice]),
       reason: result.reasons[question],
     }));
-    const processingMs = performance.now() - started;
+    const normalizedImageBlob = options.captureNormalizedImage
+      ? await matToReviewBlob(cv, alignment.normalized)
+      : null;
+    const omrMs = performance.now() - omrStarted;
+    const totalMs = performance.now() - started;
     return {
       answers: result.answers.map((selected) => selected.length === 1 ? LETTERS[selected[0]] : null),
       answerSelections: result.answers,
@@ -83,8 +103,9 @@ export async function processAnswerSheetLocal(image, options = {}) {
       },
       overlayData: buildOverlay(result, key, grading?.statuses || null),
       answerBoxes: result.boxes,
+      normalizedImageBlob,
       diagnostics: options.diagnostics ? result.details : undefined,
-      performance: { initializationMs, processingMs },
+      performance: { initializationMs, decodeMs, omrMs, processingMs: totalMs, totalMs },
       engine: { provider: 'opencv.js-wasm', version: OPENCV_RUNTIME.version, offline: true },
     };
   } finally {

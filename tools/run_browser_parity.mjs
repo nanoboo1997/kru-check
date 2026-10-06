@@ -106,6 +106,7 @@ async function evaluateUntilComplete(webSocketUrl, url) {
   await command('Page.navigate', { url });
   const deadline = Date.now() + 8 * 60 * 1000;
   let lastProgress = null;
+  let offlineReloaded = false;
   while (Date.now() < deadline) {
     const message = await command('Runtime.evaluate', {
       expression: 'window.__PARITY_RESULT__ || null',
@@ -116,6 +117,18 @@ async function evaluateUntilComplete(webSocketUrl, url) {
     if (value) {
       socket.close();
       return value;
+    }
+    if (!offlineReloaded) {
+      const offlineRequest = await command('Runtime.evaluate', {
+        expression: 'window.__BROWSER_TEST_OFFLINE_REQUEST__ === true', returnByValue: true,
+      });
+      if (offlineRequest.result?.result?.value === true) {
+        await command('Network.emulateNetworkConditions', {
+          offline: true, latency: 0, downloadThroughput: 0, uploadThroughput: 0,
+        });
+        await command('Page.reload', { ignoreCache: false });
+        offlineReloaded = true;
+      }
     }
     const progressMessage = await command('Runtime.evaluate', {
       expression: `JSON.stringify({progress:window.__PARITY_PROGRESS__||'starting',

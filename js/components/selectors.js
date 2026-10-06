@@ -15,9 +15,12 @@ export function classSelectHTML(classes, selectedId = '', id = 'f-class') {
  * includeUnknown = true → มีตัวเลือก "ไม่ระบุนักเรียน"
  */
 export function studentSelectHTML(students, selectedId = '', id = 'f-student', includeUnknown = true) {
+  const ordered = [...students].sort((a, b) =>
+    (Number(a.no) || Number.MAX_SAFE_INTEGER) - (Number(b.no) || Number.MAX_SAFE_INTEGER)
+      || `${a.firstName} ${a.lastName}`.localeCompare(`${b.firstName} ${b.lastName}`, 'th'));
   const unknown = includeUnknown ? `<option value="__unknown__">ไม่ระบุนักเรียน</option>` : '';
   const opts = [`<option value="">— เลือกนักเรียน —</option>`, unknown]
-    .concat(students.map((s) => `<option value="${s.id}" ${s.id === selectedId ? 'selected' : ''}>${s.no}. ${s.firstName} ${s.lastName}</option>`))
+    .concat(ordered.map((s) => `<option value="${s.id}" ${s.id === selectedId ? 'selected' : ''}>${s.no}. ${s.firstName} ${s.lastName}</option>`))
     .join('');
   return `<div class="field"><label for="${id}">นักเรียน</label><select class="select" id="${id}">${opts}</select></div>`;
 }

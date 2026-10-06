@@ -27,12 +27,18 @@ export async function render() {
           <button class="btn btn--ghost" id="btn-forgot">ลืมรหัสผ่าน</button>
         </div>
       </div>
-      <p class="center small muted" style="margin-top:16px;">เวอร์ชัน ${config.version} · ทำงานออฟไลน์ได้</p>
+      <p class="center small muted" data-login-offline-status style="margin-top:16px;">เวอร์ชัน ${config.version} · กำลังเตรียมใช้งานออฟไลน์...</p>
     </div>
   </div>`;
 }
 
 export async function bind(root, { store, navigate }) {
+  const refreshOfflineStatus = () => {
+    const status = root.querySelector('[data-login-offline-status]');
+    if (status) status.textContent = `เวอร์ชัน ${config.version} · ${store.offlineReady ? '✓ พร้อมใช้งานออฟไลน์' : 'กำลังเตรียมใช้งานออฟไลน์...'}`;
+  };
+  refreshOfflineStatus();
+  const unsubscribe = store.on((topic) => { if (topic === 'offline-ready') refreshOfflineStatus(); });
   const msg = (t, ok = false) => {
     root.querySelector('#login-msg').innerHTML = t
       ? `<div class="dev-note" style="${ok ? 'border-color:var(--success);background:var(--success-soft);color:var(--success);' : ''}">${t}</div>` : '';
@@ -62,4 +68,5 @@ export async function bind(root, { store, navigate }) {
     await store.auth.forgotPassword(email);
     msg(`(โหมดพัฒนา) ถ้ามีระบบจริง จะส่งลิงก์รีเซ็ตรหัสผ่านไปที่ ${email}`, true);
   });
+  return unsubscribe;
 }

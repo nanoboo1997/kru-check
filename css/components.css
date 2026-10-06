@@ -86,6 +86,12 @@
 .sync-pill--synced { background: var(--success-soft); color: var(--success); }
 .sync-pill--pending { background: var(--warning-soft); color: var(--warning); }
 .sync-pill--offline { background: var(--danger-soft); color: var(--danger); }
+.header-statuses { display: flex; align-items: center; justify-content: flex-end; gap: 6px; flex-wrap: wrap; }
+.offline-ready {
+  display: inline-flex; align-items: center; min-height: 30px; padding: 5px 10px;
+  border-radius: 999px; background: var(--success-soft); color: var(--success);
+  font-size: var(--fs-xs); font-weight: 700; white-space: nowrap;
+}
 
 /* ---------- offline banner ---------- */
 .offline-banner {
@@ -237,3 +243,23 @@
 .checkbox-row input { width: 22px; height: 22px; accent-color: var(--primary); }
 
 .fab-actions { position: sticky; bottom: calc(84px + var(--sab)); display: flex; justify-content: flex-end; }
+
+.processing-state, .offline-save-note {
+  margin-top: 12px; padding: 12px 14px; border-radius: var(--radius-sm);
+  background: var(--primary-soft); color: var(--primary-deep);
+  display: flex; align-items: center; gap: 10px;
+}
+.spinner { width: 18px; height: 18px; border: 3px solid rgba(43,143,219,.25); border-top-color: var(--primary); border-radius: 50%; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.single-result { margin-top: 14px; }
+.score-big { text-align: center; color: var(--primary-deep); font-size: var(--fs-2xl); font-weight: 800; padding: 16px 0; }
+.score-big small { font-size: var(--fs-sm); }
+.answer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 10px; }
+.answer-chip { background: var(--bg-soft); border-radius: 8px; padding: 6px; font-size: var(--fs-xs); text-align: center; }
+.answer-chip--review { background: var(--warning-soft); color: var(--warning); }
+@media (max-width: 480px) {
+  .app-header__inner { align-items: flex-start; }
+  .header-statuses { max-width: 62%; }
+  .offline-ready { white-space: normal; text-align: center; }
+  .answer-grid { grid-template-columns: repeat(3, 1fr); }
+}
